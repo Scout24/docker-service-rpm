@@ -8,6 +8,8 @@ This wrapper build a bridge between Docker appliances and Linux services by pack
 
 The resulting Linux service can be simply used like any other Linux service, for example start the service with `service schlomo start`.
 
+See also this [blog article](http://blog.schlomo.schapiro.org/2015/12/docker-appliance-as-linux-service-rpm.html).
+
 ## Installation
 
 Simply clone this git repo.
