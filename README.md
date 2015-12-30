@@ -1,6 +1,6 @@
 # docker-service-rpm
 
-![logo](https://raw.githubusercontent.com/schlomo/docker-service-rpm/master/docker-service-rpm-logo.png)
+![logo](https://raw.githubusercontent.com/ImmobilienScout24/docker-service-rpm/master/docker-service-rpm-logo.png)
 
 [Docker](https://docker.io) provides a convenient way to package entire applications into runnable containers. OTOH in the data center we use RPM packages to deliver software and configuration to our servers.
 
