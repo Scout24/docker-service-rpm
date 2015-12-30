@@ -1,5 +1,7 @@
 # docker-service-rpm
 
+![logo](master/docker-service-rpm-logo.png)
+
 [Docker](https://docker.io) provides a convenient way to package entire applications into runnable containers. OTOH in the data center we use RPM packages to deliver software and configuration to our servers.
 
 This wrapper build a bridge between Docker appliances and Linux services by packaging a Docker image as a Linux service into an RPM package.
