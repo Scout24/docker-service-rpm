@@ -7,6 +7,7 @@ RUNARGS = -p 80:80
 REQUIRES = docker-engine
 
 WORK_DIR := $(PWD)/work-$(shell mktemp -u XXXXXXXXXXXXXXXXXX)
+ESCAPED_IMAGE := $(shell echo $(IMAGE) | sed 's/\//\\\//g')
 
 .PHONY: info rpm schlomo example clean
 
@@ -17,7 +18,7 @@ info:
 rpm:
 	mkdir -p $(WORK_DIR)/BUILD
 	docker save $(IMAGE) >$(WORK_DIR)/image
-	sed <service.sh >$(WORK_DIR)/service.sh -e "s/REPLACE_IMAGE/$(echo $IMAGE | sed 's/\//\\\//g')/g" -e "s/REPLACE_NAME/$NAME/g" -e 's/REPLACE_RUNARGS/$(RUNARGS)/g'
+	sed <service.sh >$(WORK_DIR)/service.sh -e "s/REPLACE_IMAGE/$(ESCAPED_IMAGE)/g" -e "s/REPLACE_NAME/$(NAME)/g" -e 's/REPLACE_RUNARGS/$(RUNARGS)/g'
 	cp service.spec $(WORK_DIR)/$(NAME).spec
 	rpmbuild -bb -D "image $(IMAGE)" -D "name $(NAME)" -D "version $(VERSION)" -D "release $(RELEASE)" -D "requires $(REQUIRES)" -D "_topdir $(WORK_DIR)" -D "_sourcedir %_topdir" -D "_rpmdir %_topdir" -D "_target_os linux" $(WORK_DIR)/$(NAME).spec
 	mv $(WORK_DIR)/noarch/$(NAME)*rpm .
